@@ -1,2 +1,5 @@
-# 5b5tstats
-5b5t stats
+# susguy446's tool site
+More coming soon...
+
+contact:
+ discord: susguy446
