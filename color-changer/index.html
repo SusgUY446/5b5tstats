@@ -6,24 +6,18 @@
     <script>
         
 
-        function setColorBlue() {
-            document.body.style.backgroundColor = "blue";
+        function setColor(color) {
+            document.body.style.backgroundColor = color;
         }
 
-        function setColorRed() {
-            document.body.style.backgroundColor = "red";
-        }
-
-        function setColorGreen() {
-            document.body.style.backgroundColor = "green";
-        }
+        
     </script>
 </head>
 <body>
     <div class="color-picker">
-        <button onclick="setColorBlue()">Blue</button>
-        <button onclick="setColorRed()">Red</button>
-        <button onclick="setColorGreen()">Green</button>
+        <button onclick="setColor('blue')">Blue</button>
+        <button onclick="setColor('red')">Red</button>
+        <button onclick="setColor('green')">Green</button>
     </div>
 </body>
 </html> 
