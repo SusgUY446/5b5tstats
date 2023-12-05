@@ -1,16 +1,27 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beta</title>
     <script>
-        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Funktion zum Setzen der Hintergrundfarbe
+            function setColor(color) {
+                document.body.style.backgroundColor = color;
+                // Speichern der ausgewählten Farbe im localStorage
+                localStorage.setItem('selectedColor', color);
+            }
 
-        function setColor(color) {
-            document.body.style.backgroundColor = color;
-        }
+            // Prüfen, ob eine Farbe im localStorage gespeichert ist
+            const storedColor = localStorage.getItem('selectedColor');
+            if (storedColor) {
 
-        
+                document.body.style.backgroundColor = storedColor;
+            }
+                });
+            });
+        });
     </script>
 </head>
 <body>
@@ -20,4 +31,4 @@
         <button onclick="setColor('green')">Green</button>
     </div>
 </body>
-</html> 
+</html>
