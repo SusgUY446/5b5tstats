@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WEB edit</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .editor-container {
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 50px;
+    }
+    textarea {
+        width: 100%;
+        height: 300px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        font-size: 16px;
+        resize: vertical;
+    }
+    .btn-container {
+        margin-top: 10px;
+    }
+    button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    /* Media Query for spacing between button rows on mobile */
+    @media screen and (max-width: 768px) {
+        .btn-container {
+            margin-top: 20px; /* Adjust the spacing as needed */
+        }
+    }
+</style>
+</head>
+<body>
+<h1>WEB Edit - Client side online text editor</h1>
+<div class="editor-container">
+    <textarea id="editor"></textarea>
+    <div class="btn-container">
+        <button onclick="selectAll()">Select All</button>
+        <button onclick="copyText()">Copy</button>
+        <button onclick="cutText()">Cut</button>
+        <button onclick="pasteText()">Paste</button>
+        <button onclick="saveToFile()">Save to File</button>
+        <button onclick="saveToLocalStorage()">Save to Local Storage</button>
+        <input type="file" id="fileInput" accept=".txt" onchange="loadFile()">
+    </div>
+</div>
+
+<script>
+    function selectAll() {
+        var textarea = document.getElementById("editor");
+        textarea.select();
+    }
+
+    function copyText() {
+        var textarea = document.getElementById("editor");
+        textarea.select();
+        document.execCommand("copy");
+    }
+
+    function cutText() {
+        var textarea = document.getElementById("editor");
+        textarea.select();
+        document.execCommand("cut");
+    }
+
+    function pasteText() {
+        var textarea = document.getElementById("editor");
+        textarea.focus();
+        document.execCommand("paste");
+    }
+
+    function saveToFile() {
+        var textarea = document.getElementById("editor");
+        var textToSave = textarea.value;
+        var blob = new Blob([textToSave], {type: "text/plain"});
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = "text.txt";
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+    }
+
+    function saveToLocalStorage() {
+        var textarea = document.getElementById("editor");
+        var textToSave = textarea.value;
+        localStorage.setItem("savedText", textToSave);
+        alert("Text saved to local storage!");
+    }
+
+    function loadFile() {
+        var fileInput = document.getElementById('fileInput');
+        var file = fileInput.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var textarea = document.getElementById("editor");
+            textarea.value = e.target.result;
+        }
+        reader.readAsText(file);
+    }
+</script>
+</body>
+  </html>
+  
