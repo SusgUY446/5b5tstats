@@ -53,7 +53,9 @@
         <button onclick="cutText()">Cut</button>
         <button onclick="pasteText()">Paste</button>
         <button onclick="saveToFile()">Save to File</button>
+        <button onclick="loadFromFile()">Load from File</button>
         <button onclick="saveToLocalStorage()">Save to Local Storage</button>
+        <button onclick="loadFromLocalStorage()">Load from Local Storage</button>
         <input type="file" id="fileInput" accept=".txt" onchange="loadFile()">
     </div>
 </div>
@@ -103,6 +105,16 @@
         alert("Text saved to local storage!");
     }
 
+    function loadFromLocalStorage() {
+        var savedText = localStorage.getItem("savedText");
+        if (savedText) {
+            var textarea = document.getElementById("editor");
+            textarea.value = savedText;
+        } else {
+            alert("No text found in local storage.");
+        }
+    }
+
     function loadFile() {
         var fileInput = document.getElementById('fileInput');
         var file = fileInput.files[0];
@@ -115,5 +127,4 @@
     }
 </script>
 </body>
-  </html>
-  
+</html>
