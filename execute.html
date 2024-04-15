@@ -4,22 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript Execution</title>
+    <style>
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+    </style>
 </head>
 <body>
     <h1>Execute JavaScript</h1>
     <textarea id="jsCode" rows="5" cols="50"></textarea><br>
     <button onclick="executeCode()">Run</button>
+    <div id="output"></div>
 
     <script>
         function executeCode() {
             var jsCode = document.getElementById("jsCode").value;
             try {
-                eval(jsCode);
+                var result = eval(jsCode);
+                displayOutput(result);
             } catch (error) {
-                console.error("Error executing JavaScript:", error);
+                displayError(error);
             }
+        }
+
+        function displayOutput(output) {
+            var outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = "<pre>" + output + "</pre>";
+        }
+
+        function displayError(error) {
+            var outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = "<pre style='color: red'>" + error + "</pre>";
         }
     </script>
 </body>
-</html
-  >
+</ht
+    ml>
